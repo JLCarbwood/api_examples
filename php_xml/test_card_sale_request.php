@@ -1,7 +1,4 @@
 <?php
-	ini_set("include_path", ".:../:./include:../include:/Users/motske/src/PEAR");
-	require_once 'Crypt/HMAC.php';
-	
 	function __autoload($class_name) {
 	    require_once $class_name . '.php';
 	}
@@ -58,7 +55,7 @@
 	
 	echo "XML Request=" . $xml . "\n\n";
 	
-	$response = $xml_request->submit("https://dev.itransact.com/cgi-bin/rc/xmltrans2.cgi", $xml);
+	$response = $xml_request->submit("https://secure.itransact.com/cgi-bin/rc/xmltrans2.cgi", $xml);
 
 	echo "XML Response=" . $response->responseXML . "\n\n";
 	
