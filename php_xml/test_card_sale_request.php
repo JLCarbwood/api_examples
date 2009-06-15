@@ -3,13 +3,18 @@
 	    require_once $class_name . '.php';
 	}
 
+	# Search this file for the term 'FILL IN' and provide the 
+	# requested information.  There are some additional comments
+	# inline that show how to pass through recurring information 
+	# as well as different ways to pass order items.
+
 	$fields = array();
-	$fields['api_key'] = '3jaZJQjVmPw87zMFdUNP';
-	$fields['username'] = 'kevin_test #1_xjZ2f6m7';
-	$fields['target_gateway'] = '2';
+	$fields['api_key'] = 'FILL IN YOUR KEY';
+	$fields['username'] = 'FILL IN YOUR USERNAME';
+	$fields['target_gateway'] = 'FILL IN YOUR GATEWAY ID';
 	
 	$fields['account_number'] = '5454545454545454';
-	$fields['expiration_month'] = '10';
+	$fields['expiration_month'] = '05';
 	$fields['expiration_year'] = '2010';
 	
 	$fields['bill_address1'] = '123 First St.';
@@ -20,7 +25,7 @@
 	$fields['bill_phone'] = '8015551212';
 	$fields['bill_state'] = 'Utah';
 	$fields['bill_zip'] = '84103';
-	$fields['email'] = 'test@test.com';
+	$fields['email'] = 'FILL IN SOME VALID EMAIL ADDRESS';
 
 	# Optional shipping address
 	$fields['ship_address1'] = '123 First St.';
@@ -31,7 +36,8 @@
 	$fields['ship_phone'] = '8015551212';
 	$fields['ship_state'] = 'Utah';
 	$fields['ship_zip'] = '84103';
-	
+
+	# You can either use a set of order items (like below)	
 	$fields['order_items'] = array();
 	$fields['order_items'][0] = array();
 	$fields['order_items'][0]['description'] = "Item 1";
@@ -42,20 +48,33 @@
 	$fields['order_items'][1]['cost'] = "2.00";
 	$fields['order_items'][1]['qty'] = "2";
 
+	# Or just pass in a total and description	
+	# $fields['total'] = "2.00";
+	# $fields['description'] = "Order Description";
+
+	# If you want to setup recurring transactions uncomment this section
+	# $fields['recur_total'] = "1.00";
+	# $fields['recur_description'] = "Recurring Description";
+	# $fields['recur_recipe'] = "3months";
+	# $fields['recur_reps'] = "9999";
+
+	# You may provide up to 10 email text items.  These are not saved
+	# permanently
+	
 	$fields['email_text'] = array();
 	$fields['email_text'][0] = "Email Text 1";
 	$fields['email_text'][1] = "Email Text 1";
 	
 	$fields['send_customer_email'] = "TRUE";
-	$fields['send_merchant_email'] = "TRUE";
-	$fields['test_mode'] = "FALSE";
+	$fields['send_merchant_email'] = "FALSE";
+	$fields['test_mode'] = "TRUE";
 	
 	$xml_request = new CardAuthRequest($fields);
 	$xml = $xml_request->toXML();
 	
 	echo "XML Request=" . $xml . "\n\n";
 	
-	$response = $xml_request->submit("https://secure.itransact.com/cgi-bin/rc/xmltrans2.cgi", $xml);
+	$response = $xml_request->submit("https://secure.paymentclearing.com/cgi-bin/rc/xmltrans2.cgi", $xml);
 
 	echo "XML Response=" . $response->responseXML . "\n\n";
 	
