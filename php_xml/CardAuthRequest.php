@@ -14,6 +14,11 @@ class CardAuthRequest extends XMLRequest {
 	public $bill_phone;
 	public $bill_state;
 	public $bill_zip;
+	
+	public $recur_recipe;
+	public $recur_total;
+	public $recur_description;
+	public $recur_reps;
 
 	public $ship_address1;
 	public $ship_city;
@@ -89,6 +94,14 @@ class CardAuthRequest extends XMLRequest {
 				$writer->endElement();
 		}
 			$writer->endElement();		
+		if($this->recur_recipe) {
+			$writer->startElement("RecurringData");
+				$writer->writeElement("Recipe", $this->recur_recipe);
+				$writer->writeElement("RemReps", $this->recur_reps);
+				$writer->writeElement("RecurTotal", $this->recur_total);
+				$writer->writeElement("RecurDescription", $this->recur_description);
+			$writer->endElement();
+		}
 		if($this->order_items) {
 				$writer->startElement("OrderItems");
 			while ($item = each($this->order_items)) {
@@ -99,6 +112,9 @@ class CardAuthRequest extends XMLRequest {
 					$writer->endElement();					
 			}
 			$writer->endElement();
+		} else {
+			$writer->writeElement("Description", $this->description);
+			$writer->writeElement("Total", $this->total);
 		}
 		if($this->email_text || $this->send_customer_email || $this->send_merchant_email || $this->test_mode)  {
 			$writer->startElement("TransactionControl");
