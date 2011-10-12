@@ -98,8 +98,8 @@ class CardAuthRequest extends XMLRequest {
 			$writer->startElement("RecurringData");
 				$writer->writeElement("Recipe", $this->recur_recipe);
 				$writer->writeElement("RemReps", $this->recur_reps);
-				$writer->writeElement("RecurTotal", $this->recur_total);
-				$writer->writeElement("RecurDescription", $this->recur_description);
+				$writer->writeElement("Total", $this->recur_total);
+				$writer->writeElement("Description", $this->recur_description);
 			$writer->endElement();
 		}
 		if($this->order_items) {
