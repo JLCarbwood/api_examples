@@ -31,7 +31,7 @@ class XMLRequest {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postData); 		
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); /// This allows the output to be set into a variable $datastream
 		curl_setopt ($ch, CURLOPT_TIMEOUT, 360);
-		curl_setopt ($ch, CURLOPT_SSLVERSION, 3);
+		curl_setopt ($ch, CURLOPT_SSLVERSION, 6);  /// Set to TLS 1.2
 		curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 		curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, FALSE);		
 
