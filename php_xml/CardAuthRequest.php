@@ -14,6 +14,7 @@ class CardAuthRequest extends XMLRequest {
 	public $bill_phone;
 	public $bill_state;
 	public $bill_zip;
+	public $customer_id;
 	
 	public $recur_recipe;
 	public $recur_total;
@@ -71,6 +72,7 @@ class CardAuthRequest extends XMLRequest {
 			$writer->endElement();
 			$writer->startElement("CustomerData");
 				$writer->writeElement("Email", $this->email);
+				$writer->writeElement("CustId", $this->customer_id);
 				$writer->startElement("BillingAddress");
 					$writer->writeElement("Address1", $this->bill_address1);
 					$writer->writeElement("City", $this->bill_city);
