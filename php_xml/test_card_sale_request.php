@@ -26,6 +26,7 @@
 	$fields['bill_state'] = 'Utah';
 	$fields['bill_zip'] = '84103';
 	$fields['email'] = 'FILL IN SOME VALID EMAIL ADDRESS';
+	$fields['customer_id'] = '12345';
 
 	# Optional shipping address
 	$fields['ship_address1'] = '123 First St.';
